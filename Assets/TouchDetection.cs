@@ -15,7 +15,10 @@ public class TouchDetection : MonoBehaviour
                 if (touch.phase == TouchPhase.Began)
                 {
                     // Log the touch position
-                    Debug.Log("Touch position: " + touch.position);
+                    Debug.Log(Screen.width);
+                    Debug.Log(Screen.height);
+                    UDPSender udpSender = GameObject.Find("UDPSender").GetComponent<UDPSender>();
+                    udpSender.Send("Touch:" + touch.position);
                 }
             }
         }
