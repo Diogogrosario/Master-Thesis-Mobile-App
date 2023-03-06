@@ -13,12 +13,16 @@ public class UDPSender : MonoBehaviour
     // Client code (running on mobile device)
     private UdpClient udpClient;
     private IPEndPoint remoteEndPoint;
+    [SerializeField] private string ip;
+    [SerializeField] private int port;
+	
 
     void Start()
     {
         // Initialize the UDP client and set the remote endpoint to the desktop app's address and port
-        remoteEndPoint = new IPEndPoint(IPAddress.Parse("192.168.42.113"), 9000);
+        remoteEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
         udpClient = new UdpClient();
+        Send("Size:(" + Screen.width + "," + Screen.height + ")");
     }
 
     public void Send(string message)
